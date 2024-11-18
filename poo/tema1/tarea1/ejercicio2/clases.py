@@ -26,7 +26,8 @@ class Producto ():
         return self.stock < self.stock_minimo
 
     def __str__(self):
-        return f"{self.nombre} {self.categoria} {self.precio} {self.stock}"\
+        return f"{self.identificador} {self.nombre} {self.categoria}"\
+              f" {self.precio} {self.stock}"\
               f" {self.stock_minimo}"
 
     def __eq__(self, otro):
@@ -52,6 +53,7 @@ class GestioAlmacen ():
                                   stock_min)
         if cls.buscar_por_id(nuevo_producto.identificador):
             # el producto existe
+            print("El id ya esta en la lista, no se añade")
             return False
         else:
             cls.productos.append(nuevo_producto)
@@ -62,11 +64,10 @@ class GestioAlmacen ():
         """buscar_por_id. Recibe un identificador de producto como argumento y
         lo busca en la lista. En caso de encontrarlo lo retorna, si no lo
         encuentra debe retornar el valor None"""
-
         for producto in cls.productos:
             if producto.identificador == id:
                 return producto
-            return None
+        return None
 
     @classmethod
     def bajo_minimos(cls):
