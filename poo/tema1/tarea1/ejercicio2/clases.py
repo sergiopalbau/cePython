@@ -87,6 +87,3 @@ class GestioAlmacen ():
         for producto in cls.productos:
             print(producto)
         print()  # salto de linea
-
-
-
